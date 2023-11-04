@@ -2,7 +2,7 @@ import yt_dlp
 
 def download_youtube_videos(urls, output_folder="./downloads"):
     ydl_opts = {
-        'outtmpl': f'{output_folder}/%(title)s.%(ext)s',
+        'outtmpl': f'{output_folder}/video.mp4',
         'format': 'best[ext=mp4][height<=?1080]',
         'postprocessors': [
             {
@@ -27,15 +27,14 @@ def download_youtube_videos(urls, output_folder="./downloads"):
                 video_name = info_dict['title'] + '.' + info_dict['ext']
                 downloaded_videos.append({'name': video_name, 'height': video_height})
 
-    return downloaded_videos
+    return downloaded_videos[0]
 
 if __name__ == "__main__":
     video_urls = []
     video_urls.append(input())
 
     output_folder = "./downloads"
-    downloaded_videos = download_youtube_videos(video_urls, output_folder)
+    video_info = download_youtube_videos(video_urls, output_folder)
 
     print("Downloaded videos:")
-    for video_info in downloaded_videos:
-        print(f"Name: {video_info['name']}, Height: {video_info['height']} pixels")
+    print(f"Name: {video_info['name']}, Height: {video_info['height']} pixels")

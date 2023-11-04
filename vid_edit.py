@@ -1,8 +1,9 @@
 import moviepy.editor as me
 import pandas as pd
 
-def create_vid(filename, res, ):
-    video_path = "downloads/" + filename
+def create_vid(res, df):
+    video_path = "downloads/video.mp4"
+
     clip = me.VideoFileClip(video_path).without_audio()
 
     new_height = res
@@ -20,10 +21,6 @@ def create_vid(filename, res, ):
     x=10
     dur = 5
 
-    clips = []
-
-    clip1 = cropped_clip.subclip(0,10).speedx(speed)
-
-    clips.append(clip1)
+    clip1 = cropped_clip.subclip(0,25).speedx(speed)
 
     clip1.write_videofile("vertical_video.mp4", codec="libx264")
