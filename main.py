@@ -5,11 +5,11 @@ from Summary import Summary
 
 url = input()
 
-df,transcript = get_transcript(url)
+#df,transcript = get_transcript(url)
 
-sentences = Summary(transcript)
+#sentences = Summary(transcript)
 
-vid_info = download_youtube_videos([url])
+#vid_info = download_youtube_videos([url])
 
-create_vid(vid_info['height'], df)
+create_vid(vid_info['height'], df, len(sentences))
 

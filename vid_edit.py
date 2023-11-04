@@ -1,15 +1,16 @@
 import moviepy.editor as me
 import pandas as pd
 
-def create_vid(res, df):
+def create_vid(res, ts, length):
+
     video_path = "downloads/video.mp4"
 
     clip = me.VideoFileClip(video_path).without_audio()
 
     new_height = res
-    new_width = 11*new_height/16
+    new_width = 10*new_height/16
 
-    speed = 1.25
+    speed = 1
 
     x1 = (clip.size[0] - new_width) / 2
     x2 = x1 + new_width
@@ -18,9 +19,18 @@ def create_vid(res, df):
 
     cropped_clip = clip.crop(x1=x1, y1=y1, x2=x2, y2=y2)
 
-    x=10
-    dur = 5
+    v_clips = []
+    a_clips = []
 
-    clip1 = cropped_clip.subclip(0,25).speedx(speed)
+    for i in range(length):
+        ac = me.AudioFileClip('Speech/speech' + str(i+1) + '.mp3')
+        a_clips.append(ac)
+        vc = cropped_clip.subclip(ts[i], ts[i] + speed*ac.duration).speedx(speed)
+        v_clips.append(vc)
 
-    clip1.write_videofile("vertical_video.mp4", codec="libx264")
+    final_audio = me.concatenate_audioclips(a_clips)
+    final_video = me.concatenate_videoclips(v_clips)
+
+    final_audio.set_audio(final_audio)
+
+    final_audio.write_videofile("final.mp4")
