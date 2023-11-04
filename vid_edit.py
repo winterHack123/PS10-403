@@ -21,7 +21,7 @@ dur = 5
 
 clips = []
 
-clip1 = cropped_clip.subclip(x, x + speed*dur).speedx(speed)
+clip1 = cropped_clip.subclip(0,10).speedx(speed)
 
 clips.append(clip1)
 
