@@ -90,7 +90,7 @@ def process_dataframe(idata,sentences):
         maxi = 0
         pmaxi = 0
         while pmaxi==0:
-            time.sleep(20)
+            time.sleep(30)
             res = query_engine.query(s)
             string1 = res.get_formatted_sources(10000)[57:].split(" \n\n")[0] 
             for i in range(0,len(nodes)):
@@ -102,5 +102,3 @@ def process_dataframe(idata,sentences):
         
     pinecone.delete_index("summary1")
     return similarities
-   
-
