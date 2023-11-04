@@ -1,10 +1,11 @@
 from moviepy.editor import VideoFileClip
 
-video_path = "downloads/Tom & Jerry ｜ Tom & Jerry in Full Screen ｜ Classic Cartoon Compilation ｜ WB Kids.mp4"
+video_path = "downloads/Tom & Jerry ｜ Jerry in Full Force 🐭 ｜ Classic Cartoon Compilation ｜ @WB Kids.mp4"
 clip = VideoFileClip(video_path)
 
-new_width = 405
 new_height = 720
+new_width = 9*new_height/16
+
 
 x1 = (clip.size[0] - new_width) / 2
 x2 = x1 + new_width
