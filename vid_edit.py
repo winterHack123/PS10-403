@@ -1,11 +1,9 @@
-import moviepy.editor as me
-import pandas as pd
+from moviepy.editor import VideoFileClip, AudioFileClip, concatenate_audioclips, concatenate_videoclips
 
 def create_vid(res, ts, length):
 
     video_path = "downloads/video.mp4"
-
-    clip = me.VideoFileClip(video_path)
+    clip = VideoFileClip(video_path).without_audio()
 
     new_height = res
     new_width = 10*new_height/16
@@ -23,16 +21,20 @@ def create_vid(res, ts, length):
     a_clips = []
 
     for i in range(length):
-        ac = me.AudioFileClip('Speech/speech' + str(i+1) + '.mp3')
+        ac = AudioFileClip('Speech/speech' + str(i + 1) + '.mp3')
         a_clips.append(ac)
-        vc = cropped_clip.subclip(ts[i], ts[i] + speed*ac.duration).speedx(speed)
+        if ts[i] == ts[i-1]:
+            ts[i] = ts[i-1] + prev_duration
+        vc = cropped_clip.subclip(ts[i], ts[i] + ac.duration)
+        prev_duration = ac.duration
         v_clips.append(vc)
 
-    final_audio = me.concatenate_audioclips(a_clips)
-    final_video = me.concatenate_videoclips(v_clips)
+    final_audio = concatenate_audioclips(a_clips)
+    final_video = concatenate_videoclips(v_clips)
+
+    final_video = final_video.set_duration(final_audio.duration)
 
     final_video = final_video.set_audio(final_audio)
 
-    final_audio.write_audiofile("final_audio.mp3",codec = 'mp3')
-
-    final_video.write_videofile("final.mp4",codec='libx264', audio_codec='aac')
+    final_audio.write_audiofile('final_audio.mp3',)
+    final_video.write_videofile("final.mp4", codec='mpeg4')

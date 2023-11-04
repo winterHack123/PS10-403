@@ -7,6 +7,7 @@ import os
 import pinecone
 from llama_index.node_parser import SimpleNodeParser
 from llama_index.vector_stores import PineconeVectorStore
+import time
 
 def process_rows_in_batches(input_df, batch_size=10):
     output_data = []
@@ -89,7 +90,7 @@ def process_dataframe(idata,sentences):
         maxi = 0
         pmaxi = 0
         while pmaxi==0:
-    #         res = query_engine.query("summarize all")
+            time.sleep(20)
             res = query_engine.query(s)
             string1 = res.get_formatted_sources(10000)[57:].split(" \n\n")[0] 
             for i in range(0,len(nodes)):
