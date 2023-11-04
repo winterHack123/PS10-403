@@ -3,6 +3,7 @@ import yt_dlp
 def download_youtube_videos(urls, output_folder="./downloads"):
     ydl_opts = {
         'outtmpl': f'{output_folder}/%(title)s.%(ext)s',
+        'format': 'best[height=720]',
     }
     
     downloaded_files = []
