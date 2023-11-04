@@ -1,4 +1,5 @@
 import pandas as pd
+import difflib
 from llama_index import GPTVectorStoreIndex, StorageContext, ServiceContext
 from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index import Document
@@ -8,7 +9,6 @@ from llama_index.node_parser import SimpleNodeParser
 from llama_index.vector_stores import PineconeVectorStore
 
 def process_rows_in_batches(input_df, batch_size=10):
-    input_df["id"]=df.reset_index().index
     output_data = []
 
     for i in range(0, len(input_df), batch_size):
@@ -99,7 +99,7 @@ def process_dataframe(idata,sentences):
                     maxi = i
         similarities.append(data.iloc[maxi,2])
         
-
+    pinecone.delete_index("summary1")
     return similarities
    
 

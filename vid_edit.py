@@ -5,7 +5,7 @@ def create_vid(res, ts, length):
 
     video_path = "downloads/video.mp4"
 
-    clip = me.VideoFileClip(video_path).without_audio()
+    clip = me.VideoFileClip(video_path)
 
     new_height = res
     new_width = 10*new_height/16
@@ -31,6 +31,8 @@ def create_vid(res, ts, length):
     final_audio = me.concatenate_audioclips(a_clips)
     final_video = me.concatenate_videoclips(v_clips)
 
-    final_audio.set_audio(final_audio)
+    final_video = final_video.set_audio(final_audio)
 
-    final_audio.write_videofile("final.mp4")
+    final_audio.write_audiofile("final_audio.mp3",codec = 'mp3')
+
+    final_video.write_videofile("final.mp4",codec='libx264', audio_codec='aac')
