@@ -1,27 +1,12 @@
-from youtube_transcript_api import YouTubeTranscriptApi
 import openai
 import pandas as pd
 import boto3
-
 import nltk
-nltk.download("punkt") 
-url = 'https://www.youtube.com/watch?v=mwKJfNYwvm8'
 
-video_id = url.replace('https://www.youtube.com/watch?v=', '')
+def Summary(transcript):
 
-transcript = YouTubeTranscriptApi.get_transcript(video_id)
-print(transcript)
-df=pd.DataFrame(transcript)
-df['end'] = df['start'].shift(-1)
-df = df.drop(df.index[-1])
-df = df.drop('duration', axis=1)
-pd.set_option('display.max_rows', None)
-pd.set_option('display.max_columns', None)
-print(df)
-
-
-
-def Summary(df):
+    #nltk.download('punkt')
+    print('Downloaded')
 
     openai.api_key = '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'
 
@@ -39,6 +24,8 @@ def Summary(df):
         ]
     )
     summary=response["choices"][0]["message"]["content"]
+    print(summary)
+
     polly_client = boto3.Session(
                 aws_access_key_id="AKIAUS2GZTU3OAIHXR7L",                     
     aws_secret_access_key="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",
@@ -54,11 +41,8 @@ def Summary(df):
         ind=ind+1
         file.write(response['AudioStream'].read())
         file.close()
-    printf("Finished")
+    print("Finished")
     return sentences
-
-Summary(df)
-
 
 
 

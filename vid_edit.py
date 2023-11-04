@@ -7,7 +7,7 @@ def create_vid(res, df):
     clip = me.VideoFileClip(video_path).without_audio()
 
     new_height = res
-    new_width = 9*new_height/16
+    new_width = 11*new_height/16
 
     speed = 1.25
 

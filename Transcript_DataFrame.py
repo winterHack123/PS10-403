@@ -11,5 +11,7 @@ def get_transcript(url):
     df = df.drop(df.index[-1])
     df = df.drop('duration', axis=1)
     df['id'] = df.reset_index().index
+
+    print(df)
     
-    return df
+    return df,transcript
