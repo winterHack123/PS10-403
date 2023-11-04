@@ -1,0 +1,8 @@
+llama-index 
+datasets 
+pinecone-client 
+openai 
+transformers
+HuggingFaceBgeEmbeddings
+sentence_transformers
+difflib
