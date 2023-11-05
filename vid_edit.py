@@ -35,7 +35,7 @@ def create_vid(res, ts, length):
     final_video = concatenate_videoclips(v_clips)
 
     music_audio = music_audio.set_duration(final_audio.duration)
-    final_audio = CompositeAudioClip([final_audio,music_audio.volumex(0.5)])
+    final_audio = CompositeAudioClip([final_audio,music_audio.volumex(0.4)])
 
     final_audio = final_audio.set_duration(final_video.duration)
     final_video = final_video.set_audio(final_audio)
