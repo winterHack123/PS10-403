@@ -19,4 +19,3 @@ print(timestamps)
 vid_info = download_youtube_videos([url])
 
 create_vid(vid_info['height'], timestamps, len(sentences))
-

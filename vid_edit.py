@@ -32,8 +32,7 @@ def create_vid(res, ts, length):
     final_audio = concatenate_audioclips(a_clips)
     final_video = concatenate_videoclips(v_clips)
 
-    final_video = final_video.set_duration(final_audio.duration)
-
+    final_audio = final_audio.set_duration(final_video.duration)
     final_video = final_video.set_audio(final_audio)
 
     final_audio.write_audiofile('final_audio.mp3',)

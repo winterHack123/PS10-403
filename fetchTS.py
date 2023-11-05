@@ -34,7 +34,7 @@ def calculate_similarity(string1, string2):
 os.environ['PINECONE_API_KEY'] = 'be74b604-2693-4cd3-9a96-de7ab4972ee8'
 # environment is found next to API key in the console
 os.environ['PINECONE_ENVIRONMENT'] = 'gcp-starter'
-os.environ['OPENAI_API_KEY'] = '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'  
+os.environ['OPENAI_API_KEY'] = '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'  
 # platform.openai.com
 
 def process_dataframe(idata,sentences):
@@ -90,7 +90,7 @@ def process_dataframe(idata,sentences):
         maxi = 0
         pmaxi = 0
         while pmaxi==0:
-            time.sleep(30)
+            time.sleep(5)
             res = query_engine.query(s)
             string1 = res.get_formatted_sources(10000)[57:].split(" \n\n")[0] 
             for i in range(0,len(nodes)):
