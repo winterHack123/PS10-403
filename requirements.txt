@@ -6,3 +6,6 @@ transformers
 HuggingFaceBgeEmbeddings
 sentence_transformers
 difflib
+streamlit
+streamlit-lottie
+requests
