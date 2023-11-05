@@ -1,4 +1,4 @@
-from moviepy.editor import VideoFileClip, AudioFileClip, concatenate_audioclips, concatenate_videoclips
+from moviepy.editor import VideoFileClip, AudioFileClip, concatenate_audioclips, concatenate_videoclips, CompositeAudioClip
 
 def create_vid(res, ts, length):
 
@@ -29,11 +29,16 @@ def create_vid(res, ts, length):
         prev_duration = ac.duration
         v_clips.append(vc)
 
+    music_audio  = AudioFileClip('music\Still-Awake-Lofi-Study-Music(chosic.com).mp3').subclip(32,130)
+
     final_audio = concatenate_audioclips(a_clips)
     final_video = concatenate_videoclips(v_clips)
+
+    music_audio = music_audio.set_duration(final_audio.duration)
+    final_audio = CompositeAudioClip([final_audio,music_audio.volumex(0.5)])
 
     final_audio = final_audio.set_duration(final_video.duration)
     final_video = final_video.set_audio(final_audio)
 
-    final_audio.write_audiofile('final_audio.mp3',)
+    final_audio.write_audiofile('final_audio.mp3',fps = 44100)
     final_video.write_videofile("final.mp4")
