@@ -36,4 +36,4 @@ def create_vid(res, ts, length):
     final_video = final_video.set_audio(final_audio)
 
     final_audio.write_audiofile('final_audio.mp3',)
-    final_video.write_videofile("final.mp4", codec='mpeg4')
+    final_video.write_videofile("final.mp4")

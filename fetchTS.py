@@ -90,7 +90,6 @@ def process_dataframe(idata,sentences):
         maxi = 0
         pmaxi = 0
         while pmaxi==0:
-            time.sleep(5)
             res = query_engine.query(s)
             string1 = res.get_formatted_sources(10000)[57:].split(" \n\n")[0] 
             for i in range(0,len(nodes)):
