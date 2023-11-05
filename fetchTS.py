@@ -97,7 +97,7 @@ def process_dataframe(idata,sentences):
                 if(percentage>maxi):
                     pmaxi = percentage
                     maxi = i
-        similarities.append(data.iloc[maxi,2])
+        similarities.append((data.iloc[maxi,2]+data.iloc[maxi,3])//2)
         
     pinecone.delete_index("summary1")
     return similarities
