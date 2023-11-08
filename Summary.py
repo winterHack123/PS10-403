@@ -8,7 +8,7 @@ def Summary(transcript):
     #nltk.download('punkt')
     print('Downloaded')
 
-    openai.api_key = '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'
+    openai.api_key = '*'
 
     output=""
     for x in transcript:
@@ -27,8 +27,8 @@ def Summary(transcript):
     print(summary)
 
     polly_client = boto3.Session(
-                aws_access_key_id="AKIAUS2GZTU3OAIHXR7L",                     
-    aws_secret_access_key="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",
+                aws_access_key_id="*",                     
+    aws_secret_access_key="*",
     region_name='us-west-2').client('polly')
     sentences = nltk.sent_tokenize(summary)
     ind=1
