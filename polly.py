@@ -1,8 +1,8 @@
 import boto3
 
 polly_client = boto3.Session(
-                aws_access_key_id="AKIAUS2GZTU3OAIHXR7L",                     
-    aws_secret_access_key="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",
+                aws_access_key_id="*",                     
+    aws_secret_access_key="*",
     region_name='us-west-2').client('polly')
 
 response = polly_client.synthesize_speech(VoiceId='Stephen',
